@@ -23,25 +23,3 @@ body{
   padding:0;
 }
 
-#header{
-  position:sticky;
-  /*width:100vw;*/
-  top:0;
-  left:0;
-  z-index: var(--z-index--header);
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  background:white;
-  border-bottom:1px solid lightgray;
-}
-
-.header__container{
-  width:900px;
-  display: flex;
-  padding:15px 0;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items:center;
-}
-

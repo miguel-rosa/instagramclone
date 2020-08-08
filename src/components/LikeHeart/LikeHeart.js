@@ -8,8 +8,14 @@ const LikeHeart = (props) => {
    
     const [liked, setLiked] = useState(props.liked);
 
+    function handleLikeClick(e){
+        console.log(e, e.target.classList, e.target);
+        e.target.classList.add('heart--click--animation');
+        setLiked(!liked)
+    }
+
     return (
-        <div onClick={() => setLiked(!liked)}>
+        <div onClick={handleLikeClick}>
             { liked ? <LikedHeartIcon style={{color:'red'}} className="post__footer__header__heart-icon" /> :
                 <NotLikedHeartIcon className="post__footer__header__heart-icon" /> 
             }

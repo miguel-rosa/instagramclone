@@ -2,3 +2,12 @@
     font-size:25px;
     cursor:pointer;
   }
+
+.heart--click--animation{
+  animation: heart-click 1s ease-in;
+}
+@keyframes heart-click{
+  50%{
+    transform:scale(2);
+  }
+}

@@ -4,6 +4,11 @@
     align-items:center;
     padding: 50px 0;
   }
+@media (max-width:768px){
+  #feed{
+    /*padding:40px 10px*/
+  }
+}
   
 .feed__container{
     width:80%;
