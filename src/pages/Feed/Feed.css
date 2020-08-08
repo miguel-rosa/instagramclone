@@ -1,0 +1,15 @@
+#feed{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 50px 0;
+  }
+  
+.feed__container{
+    width:80%;
+    max-width:700px;
+    display:flex;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  

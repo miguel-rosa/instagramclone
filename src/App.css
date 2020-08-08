@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+:root{
+  --z-index--header:30;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+body *{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  /*font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
+  background:#FAFAFA;
+  margin:0;
+  padding:0;
+}
+
+#header{
+  position:sticky;
+  /*width:100vw;*/
+  top:0;
+  left:0;
+  z-index: var(--z-index--header);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items:center;
+  background:white;
+  border-bottom:1px solid lightgray;
 }
 
-.App-link {
-  color: #61dafb;
+.header__container{
+  width:900px;
+  display: flex;
+  padding:15px 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
