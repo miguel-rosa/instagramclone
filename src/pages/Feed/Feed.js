@@ -7,6 +7,7 @@ const posts = [
     {
       'id':1,
       'author':{
+          'id':2,
           'username':'miguel',
           'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
         },
@@ -30,6 +31,7 @@ const posts = [
     {
       'id':2,
       'author':{
+          'id':1,
           'username':'miguelgoncv',
           'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
         },
@@ -53,6 +55,7 @@ const posts = [
     {
       'id':3,
       'author':{
+          'id':3,
           'username':'miguelrosa',
           'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
         },

@@ -38,12 +38,12 @@ const Post = ({data}) => {
   return(
     <article className="post">
         <header className="post__header">
-          <Link className="post__header__link" to={`/account/${data.author.username}`}>
+          <Link className="post__header__link" to={`/account/${data.author.id}`}>
             <img className="post__header__img" src={data.author.photo} alt={data.author.username} />
             <h2 className="post__header__title">{data.author.username}</h2>
           </Link>
         </header>
-        <img className="post__image" src={data.image} alt={data.author.id} />
+        <img className="post__image" src={data.image} alt={data.author.username} />
         <footer className="post__footer">
           <div className="post__footer__wrapper">
             <div className="post__footer__header">
