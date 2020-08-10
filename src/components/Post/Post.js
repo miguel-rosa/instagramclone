@@ -43,7 +43,7 @@ const Post = ({data}) => {
             <h2 className="post__header__title">{data.author.username}</h2>
           </Link>
         </header>
-        <img className="post__image" src={data.image} alt={data.author.username} />
+        <img className="post__image" src={data.image} alt={data.author.id} />
         <footer className="post__footer">
           <div className="post__footer__wrapper">
             <div className="post__footer__header">
