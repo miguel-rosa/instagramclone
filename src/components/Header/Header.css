@@ -13,7 +13,7 @@
   }
   
   .header__container{
-    width:900px;
+    width: var(--header-width);
     display: flex;
     padding:15px 0;
     flex-direction: row;
@@ -21,8 +21,24 @@
     align-items:center;
   }
   
-  
+  .header__wrapper__user_infos{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width:50px;
+  }
 
   .instagram-logo{
       margin-bottom:-10px
+  }
+
+  .header__wrapper__user-image{
+    display:flex;
+    align-items: center;
+  }
+  .header__user-image{
+    height:22px;
+    width:22px;
+    border-radius:50%;
+    border:1px solid lightgray;
   }

@@ -1,0 +1,16 @@
+.user-post__post{
+    height:calc((var(--header-width) - 20px ) / 3);
+    width:calc((var(--header-width) - 20px ) / 3);
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    overflow: hidden;
+}
+
+.user-post__post__image{
+    width:100%;
+    height:auto;
+    opacity: 0;
+}

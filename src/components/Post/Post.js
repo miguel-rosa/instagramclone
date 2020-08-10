@@ -1,14 +1,16 @@
 import React, {useState, useContext} from 'react';
 import './Post.css';
 
-import UserContext from '../UserContext/UserContext';
+import { Link } from 'react-router-dom';
+
+import { UserContext } from '../UserContext/UserContext';
 
 import LikeHeart from '../LikeHeart/LikeHeart';
 import Comment from '../Comment/Comment.js';
 
 const Post = ({data}) => {
   
-  const user = useContext(UserContext);
+  const { dataUser } = useContext(UserContext);
 
   const [comments, setComments] = useState(data.comments);
   const [comment, setComment] = useState('');
@@ -36,14 +38,16 @@ const Post = ({data}) => {
   return(
     <article className="post">
         <header className="post__header">
-          <img className="post__header__img" src={data.author.photo} alt={data.author.username} />
-          <h2 className="post__header__title">{data.author.username}</h2>
+          <Link className="post__header__link" to={`/account/${data.author.username}`}>
+            <img className="post__header__img" src={data.author.photo} alt={data.author.username} />
+            <h2 className="post__header__title">{data.author.username}</h2>
+          </Link>
         </header>
         <img className="post__image" src={data.image} alt={data.author.username} />
         <footer className="post__footer">
           <div className="post__footer__wrapper">
             <div className="post__footer__header">
-              <LikeHeart  liked={data.liked.includes(user.id)}/>
+              <LikeHeart liked={data.liked.includes(dataUser && dataUser.id)}/>
             </div>
             <div className="post__footer__liked-bar">
               {data.liked.length === 0 ? 'Até agora ninguem curtiu' : `Curtido por ${data.liked.length} pessoas`}
