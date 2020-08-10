@@ -3,7 +3,7 @@ import './SignUp.css';
 
 import { USER_POST } from '../../api';
 import { UserContext } from '../../components/UserContext/UserContext';
-import { Link , Redirect} from 'react-router-dom';
+import { Link /*, Redirect */} from 'react-router-dom';
 
 import imgLogo from '../../uploads/instagram-logo.png';
 

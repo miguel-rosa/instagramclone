@@ -3,9 +3,9 @@ import './User.css';
 
 import { UNIQUE_USER_GET } from '../../api';
 
-import UserPost from '../../components/UserPost/UserPost';
+/*import UserPost from '../../components/UserPost/UserPost';
 
-/*
+
 const user = {
     'id':1,
     'name':'therealnoias',
@@ -65,7 +65,7 @@ const User = ({ match }) => {
             console.log(json);
         }
         fetchData()
-    }, []);
+    }, [id]);
         
     return (
             <main className="user">

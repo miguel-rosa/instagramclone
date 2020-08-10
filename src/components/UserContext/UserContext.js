@@ -9,6 +9,7 @@ export const UserStorage = (props) => {
     const [dataUser, setDataUser ] = useState(null);
     const [login, setLogin] = useState(null);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function autoLogin(){
@@ -20,15 +21,15 @@ export const UserStorage = (props) => {
                     const response = await fetch(url, options);
                     if(!response.ok) throw new Error('Token Inválido');
                     await getUser(token)
-                } catch (error){
-
+                } catch (err){
+                    setError(err);
                 } finally {
-
+                    setLoading(true)
                 }
             }
         }
         autoLogin();
-    }, []);
+    }, [error, loading]);
 
     async function userLogin(formData){
         const { username, password } = formData;

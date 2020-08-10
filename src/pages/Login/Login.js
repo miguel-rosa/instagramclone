@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import './Login.css';
 
 import { Link, Redirect } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { UserContext } from '../../components/UserContext/UserContext';
 
 const Login = () => {
 
-    const [serverMessage, setServerMessage] = useState('');
+    /*const [serverMessage, setServerMessage] = useState('');*/
     const { userLogin, login, dataUser} = useContext(UserContext);
 
     const [formData , setFormData] = useState({
@@ -49,7 +49,7 @@ const Login = () => {
                         </div>    
                         <button className="login__button"type="submit" value="Entrar">Entrar</button>
                         <div className="message">
-                            <p> {serverMessage} </p>
+                            <p> { /* serverMessage */} </p>
                         </div>
                     </form>
                 <div className="other-action">

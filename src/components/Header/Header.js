@@ -22,7 +22,7 @@ const Header = () =>{
             { dataUser ? (
               <div className="header__wrapper__user_infos">
                 <Link className="header__wrapper__user-image" to={`/account/${dataUser.id}`}>
-                  <img className="header__user-image" src={dataUser.image.url}/> 
+                  <img className="header__user-image" src={dataUser.image.url} alt="Foto do usuário"/> 
                 </Link>
                 <Link className="header__wrapper__user-image" to={`/account/${dataUser.id}`}>
                   <FaPlus/>
