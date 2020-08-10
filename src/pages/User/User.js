@@ -55,13 +55,16 @@ const User = ({ match }) => {
         'username': 'miguel-test' 
     });
 
-    useEffect( async() => {
+    useEffect( () => {
+        async function fetchData() {
             const { url, options } = UNIQUE_USER_GET(id)
             const response = await fetch(url, options);
             const json = await response.json();
             
             setUser(json);
             console.log(json);
+        }
+        fetchData()
     }, []);
         
     return (
