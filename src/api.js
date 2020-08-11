@@ -1,5 +1,5 @@
-export const API_URL = 'http://apidogs.combr/json';
-/*export const API_URL = 'https://wdtheme.wdt.com.br/json';*/
+/*export const API_URL = 'http://apidogs.combr/json';*/
+export const API_URL = 'https://wdtheme.wdt.com.br/json';
 
 export function TOKEN_POST (body) {
     return {
