@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './User.css';
-
+import { useParams } from 'react-router-dom';
 import { UNIQUE_USER_GET } from '../../api';
 
 /*import UserPost from '../../components/UserPost/UserPost';
@@ -41,23 +41,21 @@ const user = {
 }
 */
 
-const User = ({ match }) => {
-    
-    const { params: {id} } = match;  
+const User = () => {
+    const { username } = useParams();
+    /*const { params: {username} } = match;  */
 
     const [ user, setUser ] = useState({
         'email':'',
         'id':'',
-        'image':{
-            'url': 'http://0.gravatar.com/avatar/f587b8a2cefb2e7be0cb123f1fdc44b5?s=96&d=mm&r=g'
-        },
-        'name': 'miguel-test',
-        'username': 'miguel-test' 
+        'image':'http://0.gravatar.com/avatar/f587b8a2cefb2e7be0cb123f1fdc44b5?s=96&d=mm&r=g',
+        'name': '',
+        'username': '' 
     });
 
     useEffect( () => {
         async function fetchData() {
-            const { url, options } = UNIQUE_USER_GET(id)
+            const { url, options } = UNIQUE_USER_GET(username)
             const response = await fetch(url, options);
             const json = await response.json();
             
@@ -65,25 +63,25 @@ const User = ({ match }) => {
             console.log(json);
         }
         fetchData()
-    }, [id]);
+    }, [username]);
         
     return (
             <main className="user">
                 <div className="user__container">
                     <header className="user__header">
                         <div className="user__photo">
-                            <img className="user__photo__image" src={user.image.url} alt={user.title} />
+                            <img className="user__photo__image" src={user.image} alt={user.title} />
                         </div>
                         <div className="user__infos">
                             <div>
-                                <h1 className="user__name">{user.name}</h1>
+                                <h1 className="user__name">{user.username}</h1>
                             </div>
                             <div className="user__numbers">
                                 <span className="user__number"><b>{/* user.posts.length */}</b> publicações</span>
                                 <span className="user__number"><b>10</b> seguidores</span>
                                 <span className="user__number"><b>20</b> seguindo</span>
                             </div>
-                            <h2 className="user__title">{ /*user.title */}</h2>
+                            <h2 className="user__title">{ user.name }</h2>
                             <p className="user_description">{ /*user.description */}</p>
                         </div>
                     </header>

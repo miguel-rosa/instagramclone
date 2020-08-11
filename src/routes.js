@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 
@@ -10,18 +10,28 @@ import Photo from './components/Photo/Photo';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 
-const Routes = () => {
+import { UserStorage }  from './components/UserContext/UserContext';
+
+
+const Router = () => {
     return (
-    <BrowserRouter>
-        <Header/>
-        <Route component={Feed} path="/" exact />
-        <Route component={User} path="/account/:id" exact/>
-        <Route component={Photo} path="/account/p/:id" exact />
-        
-        <Route component={Login} path="/login" exact/>
-        <Route component={SignUp} path="/signup" exact/>
+    
+    <BrowserRouter>  
+        <UserStorage>
+            <Header/>
+            <Routes  basename="/">
+                
+                <Route exact path=""><Feed/> </Route>
+                <Route exact path="/user/:username">  <User/> </Route>
+                <Route path="/user/p/:username"> <Photo/></Route>
+            
+                <Route exact path="/login"> <Login/> </Route>
+                <Route exact path="/signup"> <SignUp/>  </Route>
+            </Routes>
+        </UserStorage>
     </BrowserRouter>    
+    
     )
 }
 
-export default Routes;
+export default Router;

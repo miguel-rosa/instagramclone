@@ -1,27 +1,21 @@
 import React, {useState, useContext} from 'react';
 import './Login.css';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import imgLogo from '../../uploads/instagram-logo.png';
 
 import { UserContext } from '../../components/UserContext/UserContext';
 
+import Error from '../../components/Helper/Error';
+
 const Login = () => {
 
-    /*const [serverMessage, setServerMessage] = useState('');*/
-    const { userLogin, login, dataUser} = useContext(UserContext);
+    const { userLogin, error, loading, login, dataUser } = useContext(UserContext);
 
-    const [formData , setFormData] = useState({
-        'username':'',
-        'password':''
-    })
-
-    console.log(login)
-     
-    if(login){
-        return (<Redirect to={`/account/${dataUser.id}`}/>)
-    }
+    const [formData , setFormData] = useState({'username':'','password':''})
+    
+    if(login === true ) return <Navigate to={`/user/${dataUser.username}`}/>
 
     function handleInputChange(event){
         const { name, value } = event.target;
@@ -30,7 +24,6 @@ const Login = () => {
 
     async function sendForm(event){
         event.preventDefault();
-        console.log(formData)
         userLogin(formData);
     }  
 
@@ -47,9 +40,9 @@ const Login = () => {
                             <input name="password" onChange={handleInputChange} required id="login__password" type="password"  />
                             <label htmlFor="login__password">Senha</label>
                         </div>    
-                        <button className="login__button"type="submit" value="Entrar">Entrar</button>
+                        {loading ? <button className="login__button" type="submit" disabled>Entrar</button> : <button className="login__button"type="submit" value="Entrar">Entrar</button>}
                         <div className="message">
-                            <p> { /* serverMessage */} </p>
+                            <Error error={error} />
                         </div>
                     </form>
                 <div className="other-action">

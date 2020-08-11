@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { UserStorage }  from './components/UserContext/UserContext';
-
-import Routes from './routes';
+import Router from './routes';
 
 const App = () => {
   
   return(
-    <UserStorage >
-     <Routes />
-    </UserStorage>
+    <Router />
   );
 }
 
 export default App;
+

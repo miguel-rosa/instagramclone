@@ -67,6 +67,7 @@ const posts = [
   
 
 const Feed = () => {
+    console.log('feed');
     return(
         <main id="feed">
             <div id="feed__container">

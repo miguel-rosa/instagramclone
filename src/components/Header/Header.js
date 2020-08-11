@@ -10,7 +10,7 @@ import imgLogo from '../../uploads/instagram-logo.png'
 
 const Header = () =>{
 
-    const { dataUser } = useContext(UserContext)
+    const { dataUser, userLogout } = useContext(UserContext)
 
     return(
       <header id="header">
@@ -21,10 +21,11 @@ const Header = () =>{
           
             { dataUser ? (
               <div className="header__wrapper__user_infos">
-                <Link className="header__wrapper__user-image" to={`/account/${dataUser.id}`}>
+                <Link className="header__wrapper__user-image" to={`/user/${dataUser.username}`}>
                   <img className="header__user-image" src={dataUser.image.url} alt="Foto do usuário"/> 
                 </Link>
-                <Link className="header__wrapper__user-image" to={`/account/${dataUser.id}`}>
+                <button onClick={userLogout}>Sair</button>
+                <Link className="header__wrapper__user-image" to={`/user/${dataUser.username}`}>
                   <FaPlus/>
                 </Link>
               </div>

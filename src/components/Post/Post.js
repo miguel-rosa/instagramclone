@@ -38,7 +38,7 @@ const Post = ({data}) => {
   return(
     <article className="post">
         <header className="post__header">
-          <Link className="post__header__link" to={`/account/${data.author.id}`}>
+          <Link className="post__header__link" to={`/user/${data.author.username}`}>
             <img className="post__header__img" src={data.author.photo} alt={data.author.username} />
             <h2 className="post__header__title">{data.author.username}</h2>
           </Link>

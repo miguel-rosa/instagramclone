@@ -5,6 +5,8 @@ import { USER_POST } from '../../api';
 import { UserContext } from '../../components/UserContext/UserContext';
 import { Link /*, Redirect */} from 'react-router-dom';
 
+import useFetch from '../../hooks/useFetch';
+
 import imgLogo from '../../uploads/instagram-logo.png';
 
 
@@ -12,6 +14,8 @@ import imgLogo from '../../uploads/instagram-logo.png';
 const SignUp = () => {
     
     const { userLogin } = useContext(UserContext);
+    const { loading, error, request } = useFetch();
+
 
     const [formData , setFormData] = useState({
         'username':'',
@@ -19,7 +23,6 @@ const SignUp = () => {
         'email':'',
         'password':''
     })
-    const [serverMessage, setServerMessage] = useState('');
 
     function handleInputChange(event){
         const { name, value } = event.target;
@@ -32,14 +35,9 @@ const SignUp = () => {
 
         const { url, options } = USER_POST(formData);
 
-        const response = await fetch(url, options);
-        const json = await response.json();
-        setServerMessage(json.message);
-        console.log(json);
-        userLogin(formData)
-        /*return(
-            <Redirect to={`account/${json}`} />
-        )*/
+        const { response }= await request(url, options);
+        
+        if(response.ok) userLogin(formData)       
         
     }
 
@@ -65,13 +63,18 @@ const SignUp = () => {
                             <input name="password" onChange={handleInputChange} required id="signup__passoword" type="password"  />
                             <label htmlFor="signup__passoword">Senha</label>
                         </div>
-                        <button className="login__button"type="submit" value="Entrar">Entrar</button>
+                            { loading ? (
+                                <button className="login__button"type="submit" disabled >Entrar</button>
+                            ):(
+                                <button className="login__button"type="submit" value="Entrar">Entrar</button>
+                            )
+                            }
                         <div className="message">
-                            <p> {serverMessage} </p>
+                            { error && <p>{error}</p> }
                         </div>
                     </form>
                     <div className="other-action">
-                    Já tem uma conta?<Link className="link-text" to="/login"> Conecte-se</Link>
+                    Já tem uma conta?<Link className="link-text" to="login"> Conecte-se</Link>
                     </div>
                 </div>
             </div>    
