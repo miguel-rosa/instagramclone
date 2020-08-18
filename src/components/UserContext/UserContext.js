@@ -10,6 +10,7 @@ export const UserStorage = (props) => {
     const [login, setLogin] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    
     const navigate = useNavigate();
 
     const userLogout = useCallback(async function(){

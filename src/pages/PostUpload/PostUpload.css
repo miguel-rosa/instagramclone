@@ -1,0 +1,17 @@
+.preview{
+    height:290px;
+    width:290px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom:20px;
+}
+
+.input__file{
+    padding-bottom:20px;
+}
+.input__post{
+    width:100%;
+    padding: 5px;
+    border-radius:5px;
+    border:1px solid lightgray;
+}

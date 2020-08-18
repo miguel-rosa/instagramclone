@@ -1,13 +1,20 @@
 import React from 'react';
 import './UserPost.css';
 
-import { Link } from 'react-router-dom';
 
-const UserPost = ({post}) => {
-    return(
-        <Link to={`/account/p/${post.id}`} >
-            <article className="user-post__post" style={{backgroundImage:`url('${post.photo}')`}} />
-        </Link>
+
+
+const UserPost = (props) => {
+    
+      return(
+        
+        /*to={`/account/p/${post.id}`}*/
+        <div className="user__post__wrapper"  >
+            <article className="user-post__post" style={{backgroundImage:`url('${props.post.src}')`}}>
+                { props.children }
+            </article>
+        </div>
+        
     )
 }
 

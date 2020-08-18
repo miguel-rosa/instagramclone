@@ -1,44 +1,103 @@
 #header{
-    position:sticky;
-    /*width:100vw;*/
-    top:0;
-    left:0;
-    z-index: var(--z-index--header);
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    background:white;
-    border-bottom:1px solid lightgray;
-    padding:0 10px
-  }
-  
-  .header__container{
-    width: var(--header-width);
-    display: flex;
-    padding:15px 0;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
-  }
-  
-  .header__wrapper__user_infos{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    width:50px;
-  }
+  position:sticky;
+  /*width:100vw;*/
+  top:0;
+  left:0;
+  z-index: var(--z-index--header);
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background:white;
+  border-bottom:1px solid lightgray;
+  padding:0 10px
+}
 
-  .instagram-logo{
-      margin-bottom:-10px
-  }
+.header__container{
+  width: var(--header-width);
+  display: flex;
+  padding:15px 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+}
 
-  .header__wrapper__user-image{
-    display:flex;
-    align-items: center;
-  }
-  .header__user-image{
-    height:22px;
-    width:22px;
-    border-radius:50%;
-    border:1px solid lightgray;
-  }
+.header__wrapper__user_infos{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  width:50px;
+}
+
+.instagram-logo{
+    margin-bottom:-10px
+}
+
+.header__wrapper__user-image{
+  display:flex;
+  align-items: center;
+  position:relative
+}
+.header__user-image{
+  height:22px;
+  width:22px;
+  border-radius:50%;
+  border:1px solid lightgray;
+}
+
+.header__popup__items{
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.header__popup{
+  display:flex;
+  position: absolute;
+  right:-20px;
+  z-index:999999999 !important;
+  top:30px;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.08));
+  border-radius:5px;
+  width:200px;
+  top:40px;
+  background:white;
+  flex-direction: column; 
+}
+
+.header__popup__triangle{
+  content:"";
+  z-index:-3;
+  position:absolute;
+  background:white;
+  transform: rotate(45deg);
+  right:23px;
+  top:-8px;
+  width:15px;
+  height:15px;
+  
+}
+
+
+.popup__item{
+  list-style-type:none;
+  padding:10px 20px;
+  overflow: hidden;
+  display:flex;
+  align-items:center;
+  
+}
+
+.popup__item:hover{
+  background:#f1f1f1;
+}
+.popup__item__ico{
+  font-size:20px  
+}
+.popup__item__text{
+  font-size:14px;
+  padding-left:10px;
+}
+
+.logout{
+  cursor:pointer;
+  border-top:1px solid lightgray;
+}

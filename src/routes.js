@@ -10,6 +10,8 @@ import Photo from './components/Photo/Photo';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 
+import PostUpload from './pages/PostUpload/PostUpload';
+
 import { UserStorage }  from './components/UserContext/UserContext';
 
 
@@ -19,14 +21,18 @@ const Router = () => {
     <BrowserRouter>  
         <UserStorage>
             <Header/>
-            <Routes  basename="/">
+            <Routes  basename="/">   
                 
                 <Route exact path=""><Feed/> </Route>
-                <Route exact path="/user/:username">  <User/> </Route>
-                <Route path="/user/p/:username"> <Photo/></Route>
-            
+
                 <Route exact path="/login"> <Login/> </Route>
                 <Route exact path="/signup"> <SignUp/>  </Route>
+
+                <Route exact path="/user/:username">  <User/> </Route>
+                <Route path="/user/p/:username"> <Photo/></Route>
+
+                <Route path="/post"><PostUpload/></Route>
+                
             </Routes>
         </UserStorage>
     </BrowserRouter>    

@@ -1,4 +1,4 @@
-/*export const API_URL = 'http://apidogs.combr/json';*/
+//export const API_URL = 'http://apidogs.combr/json';
 export const API_URL = 'https://wdtheme.wdt.com.br/json';
 
 export function TOKEN_POST (body) {
@@ -34,7 +34,7 @@ export function USER_GET(token){
         options:{
             method:'GET',
             headers:{
-                'Authorization':'Bearer '+token
+                'Authorization':'Bearer '+ token
             }
         }
     }
@@ -49,7 +49,7 @@ export function USER_POST(formData){
                 "Content-Type": "application/json",
                      "Accept":"application/json"
             },
-        body: JSON.stringify(formData)
+            body: JSON.stringify(formData)
         }
     }
 }
@@ -63,3 +63,28 @@ export function UNIQUE_USER_GET(id){
     }
 }
 
+export function POST_PHOTO(formData, token){
+    return{
+        url:API_URL + '/v1/photo',
+        options:{
+            method:'POST',
+            headers:{
+                /*'Content-Type': "multipart/form-data; boundary=---011000010111000001101001",*/
+                'Authorization': 'Bearer ' + token
+            },
+            body:formData
+        }
+    }
+}
+
+export function DELETE_POST(id, token){
+    return{
+        url:API_URL + '/v1/photo/' + id,
+        options:{
+            method:'DELETE',
+            headers:{
+                'Authorization': 'Bearer ' + token
+            }
+        }
+    }
+}

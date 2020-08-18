@@ -3,9 +3,15 @@ import './User.css';
 import { useParams } from 'react-router-dom';
 import { UNIQUE_USER_GET } from '../../api';
 
-/*import UserPost from '../../components/UserPost/UserPost';
 
+import { Link } from 'react-router-dom';
 
+import { DELETE_POST } from '../../api';
+
+import { FiX as CloseIcon } from 'react-icons/fi'
+
+import UserPost from '../../components/UserPost/UserPost';
+/*
 const user = {
     'id':1,
     'name':'therealnoias',
@@ -42,15 +48,20 @@ const user = {
 */
 
 const User = () => {
+    
+    /*  
+        VERIFICAR SE USUÁRIO EXISTE, SE NÃO -> 404
+    */
+
     const { username } = useParams();
-    /*const { params: {username} } = match;  */
 
     const [ user, setUser ] = useState({
         'email':'',
         'id':'',
         'image':'http://0.gravatar.com/avatar/f587b8a2cefb2e7be0cb123f1fdc44b5?s=96&d=mm&r=g',
         'name': '',
-        'username': '' 
+        'username': '',
+        'posts': ['']
     });
 
     useEffect( () => {
@@ -64,7 +75,35 @@ const User = () => {
         }
         fetchData()
     }, [username]);
+     
+    
+    function handlePostDelete(id){
         
+        return deletePost(id)
+    }
+
+    async function deletePost(id){
+        const token = window.localStorage.getItem('token');
+        const { url, options } = DELETE_POST(id, token);
+        const response = await fetch(url, options);
+        
+        if(response.ok){
+
+            const oldUser = user.posts
+            const newUser = oldUser.filter( item => item.id !== id);
+            console.log(newUser)
+
+            setUser({
+                'email':user.email,
+                'id':user.id,
+                'image':user.image,
+                'name': user.name,
+                'username': user.username,
+                'posts': newUser
+            })
+        }
+    }
+    
     return (
             <main className="user">
                 <div className="user__container">
@@ -77,7 +116,7 @@ const User = () => {
                                 <h1 className="user__name">{user.username}</h1>
                             </div>
                             <div className="user__numbers">
-                                <span className="user__number"><b>{/* user.posts.length */}</b> publicações</span>
+                                <span className="user__number"><b>{user.posts.length}</b>{user.posts.length === 1 ? ' publicação' : ' publicações'}</span>
                                 <span className="user__number"><b>10</b> seguidores</span>
                                 <span className="user__number"><b>20</b> seguindo</span>
                             </div>
@@ -87,9 +126,11 @@ const User = () => {
                     </header>
                     <section className="user__posts">
                         {
-                            /*user.posts.map( post => (
-                                <UserPost key={post.id} post={post} />
-                            ))*/
+                            user.posts.map( post => (
+                                <UserPost key={post.id} post={post}>
+                                        <CloseIcon onClick={ () => handlePostDelete(post.id )} className="user__post__close" />
+                                </UserPost>
+                            ))
                         }
                     </section>
                 </div>

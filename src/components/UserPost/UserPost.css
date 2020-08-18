@@ -7,10 +7,36 @@
     align-items: center;
     justify-content:center;
     overflow: hidden;
+    position:relative;
+    transition:all .2s ease-in-out;
 }
 
 .user-post__post__image{
     width:100%;
     height:auto;
     opacity: 0;
+}
+
+.user__post__close{
+    position:absolute;
+    right:10px;
+    top:10px;
+    color:white;
+    opacity:0;
+    font-size:20px;
+    z-index:999;
+    cursor: pointer;
+
+}
+
+.user__post__wrapper:hover .user__post__close{
+    opacity:1;
+}
+
+.user__post__wrapper:hover .user-post__post{
+    filter: brightness(.6);
+}
+
+.user__post__wrapper:hover{
+
 }
