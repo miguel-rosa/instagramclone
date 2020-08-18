@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { UNIQUE_USER_GET } from '../../api';
 
 
-import { Link } from 'react-router-dom';
+
 
 import { DELETE_POST } from '../../api';
 

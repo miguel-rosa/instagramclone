@@ -13,15 +13,12 @@ const PostUpload = () => {
     const { dataUser } = useContext(UserContext);
 
     const navigate = useNavigate();
-    const [data, setData] = useState({
-        'img':'',
-        'legend':''
-    })
+    
 
     const [legend, setLegend] = useState({})
     const [image, setImage] = useState({})
 
-    const { loading, error, request } = useFetch();
+    const {/* loading, error,*/ request } = useFetch();
 
     function handleInputChange(event){
         const { value } = event.target;
@@ -37,11 +34,8 @@ const PostUpload = () => {
 
     async function handleFormSubmit(event){
         event.preventDefault();
-        console.log(data)
+        
         const token = window.localStorage.getItem('token');
-        
-        /*const { img, legend } = data;*/
-        
         const formData = new FormData();
 
         formData.append('img', image.raw);
