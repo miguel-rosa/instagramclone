@@ -37,3 +37,13 @@
     filter: brightness(.6);
 }
 
+@media (max-width:768px){
+    .user-post__post{
+        height: 33.3333vw;
+        width:33.333vw
+    }
+    .user__posts {
+        margin-top:0;
+        gap:0;
+    }
+}
