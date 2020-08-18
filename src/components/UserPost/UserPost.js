@@ -1,9 +1,6 @@
 import React from 'react';
 import './UserPost.css';
 
-
-
-
 const UserPost = (props) => {
     
       return(

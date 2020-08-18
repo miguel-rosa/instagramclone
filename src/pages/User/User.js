@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './User.css';
 import { useParams } from 'react-router-dom';
 import { UNIQUE_USER_GET } from '../../api';
-
-
-
 
 import { DELETE_POST } from '../../api';
 
 import { FiX as CloseIcon } from 'react-icons/fi'
 
 import UserPost from '../../components/UserPost/UserPost';
+
+import { UserContext } from '../../components/UserContext/UserContext';
 /*
 const user = {
     'id':1,
@@ -52,8 +51,9 @@ const User = () => {
     /*  
         VERIFICAR SE USUÁRIO EXISTE, SE NÃO -> 404
     */
-
+    const { dataUser } = useContext(UserContext);
     const { username } = useParams();
+    const [ isUser, setIsUser ] = useState(Boolean());
 
     const [ user, setUser ] = useState({
         'email':'',
@@ -70,15 +70,20 @@ const User = () => {
             const response = await fetch(url, options);
             const json = await response.json();
             
-            setUser(json);
-            console.log(json);
+            setUser(json);    
         }
         fetchData()
     }, [username]);
      
-    
+    useEffect ( () => {
+        if( dataUser && dataUser.id === user.id){
+            setIsUser(true)
+        }else{
+            setIsUser(false);
+        }
+    }, [dataUser, user.id])
+
     function handlePostDelete(id){
-        
         return deletePost(id)
     }
 
@@ -88,18 +93,16 @@ const User = () => {
         const response = await fetch(url, options);
         
         if(response.ok){
-
-            const oldUser = user.posts
-            const newUser = oldUser.filter( item => item.id !== id);
-            console.log(newUser)
-
+            const posts = user.posts
+            const updatedPosts = posts.filter( item => item.id !== id);
+            
             setUser({
                 'email':user.email,
                 'id':user.id,
                 'image':user.image,
                 'name': user.name,
                 'username': user.username,
-                'posts': newUser
+                'posts': updatedPosts
             })
         }
     }
@@ -128,7 +131,7 @@ const User = () => {
                         {
                             user.posts.map( post => (
                                 <UserPost key={post.id} post={post}>
-                                        <CloseIcon onClick={ () => handlePostDelete(post.id )} className="user__post__close" />
+                                  { isUser && <CloseIcon onClick={ () => handlePostDelete(post.id )} className="user__post__close" /> }
                                 </UserPost>
                             ))
                         }
