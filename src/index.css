@@ -26,6 +26,12 @@
     padding:0;
   }
   
+  @media (max-width:768px){
+    body{
+        background:white;
+    }
+  }
+
   a{
     text-decoration: none;
     color:var(--link-color);

@@ -55,7 +55,7 @@ const PostUpload = () => {
             {image.preview && <div className="preview" style={{backgroundImage:`url('${image.preview}')`}}/>}
             <form onSubmit={handleFormSubmit}>
                 <input className="input__file" onChange={handleFileInputChange} name="img" type="file" />
-                <labe className="input__label">Legenda</labe>
+                <label className="input__label">Legenda</label>
                 <textarea className="input__post" onChange={handleInputChange} name="legend" type="text" id="legend"/>
                 <button className="login__button" >Enviar</button>
             </form>

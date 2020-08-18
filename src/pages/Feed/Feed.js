@@ -1,54 +1,48 @@
-import React from 'react';
+import React /*, { useEffect, useState }*/ from 'react';
 import './Feed.css';
 
 import Post from '../../components/Post/Post'
+
+
+// import { PHOTOS_GET } from '../../api';
+
+
+
 
 const posts = [
     {
       'id':1,
       'author':{
           'id':2,
-          'username':'miguel',
-          'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
+          'username':'rosamiguel',
+          'photo':'https://secure.gravatar.com/avatar/a6ba4562a8724b96c2a29ee19c14d74a?s=96&d=mm&r=g'
         },
-      'image':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/s1080x1080/117155162_2101846406780502_2860568112420455038_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=trt5xDWFT6IAX9cpygk&oh=b55e24cdd4065577a94b3f4c547a5af9&oe=5F567C02',
+      'image':'https://wdtheme.wdt.com.br/wp-content/uploads/2020/08/cover-linkedin-1000x396.png',
       'liked':[],
       'comments':[
         {
           "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
+          "comment":"Show!!"
         },
         { 
-          "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
-        },  
-        {
-          "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
-        },  
+          "username":'victoria',
+          "comment":"Muito bomm"
+        },   
       ]
     },
     {
       'id':2,
       'author':{
           'id':1,
-          'username':'miguelgoncv',
-          'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
+          'username':'togorv',
+          'photo':'https://images.unsplash.com/profile-1596465537821-89e405f774f5image?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff'
         },
-      'image':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/p1080x1080/117023107_2344497312525467_6015447809918356012_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=CDNuKQFkSFgAX_Dr9jY&oh=653bd712cd182e40b6bf0a9e6287328d&oe=5F586EE3',
+      'image':'https://images.unsplash.com/photo-1597685205229-f42f70954103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60',
       'liked':[12,1,285,54,678,11,7,48946,64],
       'comments':[
         {
-          "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
-        },
-        { 
-          "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
-        },  
-        {
-          "username":'miguel',
-          "comment":"Que legalzão esse bagulho ae"
+          "username":'roberto',
+          "comment":"Podia ser melhor..."
         },  
       ]
     },
@@ -56,26 +50,47 @@ const posts = [
       'id':3,
       'author':{
           'id':3,
-          'username':'miguelrosa',
-          'photo':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/105379171_372769043689602_8272685980676654933_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_ohc=dG59d3YxyPIAX_Yu83k&oh=444f1e1bf9fc7e3066189d3dd4177049&oe=5F55827F'
+          'username':'nicolasjleclercq',
+          'photo':'https://images.unsplash.com/profile-1597655333848-643f36cefa2dimage?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff'
         },
-      'image':'https://instagram.fcgh2-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/s1080x1080/115938150_320233819130608_3300500812918605291_n.jpg?_nc_ht=instagram.fcgh2-1.fna.fbcdn.net&_nc_cat=104&_nc_ohc=SvpBjDJyK4wAX-H0_ok&oh=4b1875fed03edaeef4bde8871f01117e&oe=5F5A74E8',
+      'image':'https://images.unsplash.com/photo-1597682497997-25dc681680f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=50',
       'liked':[12,1,285,54,678,44,11,7,48946,64],
       'comments':[]
     }
   ];
   
 
+  
+
+
+
+
 const Feed = () => {
-    console.log('feed');
+
+  /*  const [ posts, setPosts ] = useState([]); 
+    
+    
+    useEffect(() => {
+      async function fetchData() {
+        const {url, options } = PHOTOS_GET();
+        const  response  = await fetch(url, options);
+        const json = await response.json();
+        
+        setPosts(json)
+    }
+      fetchData();
+
+    }, [])
+  
+   console.log(posts)*/
     return(
         <main id="feed">
             <div id="feed__container">
                 {
-                    posts.map( post => (
-                    <Post key={post.id} data={post} />
+                    posts && posts.map( post => (
+                      <Post key={post.id} data={post} />
                     ))
-                }
+                 }
             </div>
         </main>
     );

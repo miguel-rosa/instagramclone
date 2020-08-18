@@ -88,3 +88,16 @@ export function DELETE_POST(id, token){
         }
     }
 }
+
+
+export function PHOTOS_GET(){
+    return{
+        url:API_URL + '/v1/photo/',
+        options:{
+            method:'GET',
+            headers:{
+                
+            }
+        }
+    }
+}

@@ -46,7 +46,8 @@ const Login = () => {
                         </div>
                     </form>
                 <div className="other-action">
-                    Não tem uma conta? <Link className="link-text" to='signup'> Cadastre-se</Link>
+                    Não tem uma conta? 
+                    <Link className="link-text" to='/signup'> Cadastre-se</Link>
                 </div>
             </div>
         </main>   

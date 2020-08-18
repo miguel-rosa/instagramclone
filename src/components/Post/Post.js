@@ -10,7 +10,7 @@ import Comment from '../Comment/Comment.js';
 
 const Post = ({data}) => {
   
-  const { dataUser } = useContext(UserContext);
+  const { dataUser, login } = useContext(UserContext);
 
   const [comments, setComments] = useState(data.comments);
   const [comment, setComment] = useState('');
@@ -27,13 +27,14 @@ const Post = ({data}) => {
       return;
     }
     const newComment = {
-        'username':'miguel',
+        'username':dataUser.username,
         comment
     }
     setComments([...comments, newComment ])
     setComment('');
 
   }
+  
 
   return(
     <article className="post">
@@ -47,7 +48,7 @@ const Post = ({data}) => {
         <footer className="post__footer">
           <div className="post__footer__wrapper">
             <div className="post__footer__header">
-              <LikeHeart liked={data.liked.includes(dataUser && dataUser.id)}/>
+              { login && <LikeHeart liked={data.liked.includes(dataUser && dataUser.id)}/> }
             </div>
             <div className="post__footer__liked-bar">
               {data.liked.length === 0 ? 'Até agora ninguem curtiu' : `Curtido por ${data.liked.length} pessoas`}
@@ -60,17 +61,19 @@ const Post = ({data}) => {
                }
             </div>
             </div>
-          <form onSubmit={handleSendComment} className="post__footer__send-comment">
-            <textarea 
-              className="post__footer__send-comment__input" 
-              type="text"
-              placeholder="Adicione um comentário"
-              rows="1"
-              value={comment}
-              onChange={handleInput}
-            />
-            <button type="submit" className="post__footer__send-comment__send">Publicar</button>
-          </form>
+            { login &&
+              <form onSubmit={handleSendComment} className="post__footer__send-comment">
+                <textarea 
+                  className="post__footer__send-comment__input" 
+                  type="text"
+                  placeholder="Adicione um comentário"
+                  rows="1"
+                  value={comment}
+                  onChange={handleInput}
+                />
+                <button type="submit" className="post__footer__send-comment__send">Publicar</button>
+              </form>
+            }
         </footer> 
     </article>
   )

@@ -9,8 +9,6 @@ const LikeHeart = (props) => {
     const [liked, setLiked] = useState(props.liked);
     
     function handleLikeClick(e){
-        console.log(e, e.target.classList, e.target);
-        e.target.classList.add('heart--click--animation');
         setLiked(!liked)
     }
 

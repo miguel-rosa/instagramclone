@@ -23,17 +23,17 @@ const Router = () => {
             <Header/>
             <Routes  basename="/">   
                 
-                <Route exact path=""><Feed/> </Route>
+                <Route path=""><Feed/></Route>
 
-                <Route exact path="/login"> <Login/> </Route>
-                <Route exact path="/signup"> <SignUp/>  </Route>
-
-                <Route exact path="/user/:username">  <User/> </Route>
+                <Route path="/user/:username">  <User/> </Route>
                 <Route path="/user/p/:username"> <Photo/></Route>
 
                 <Route path="/post"><PostUpload/></Route>
-                
+
+                <Route path="/login"> <Login/> </Route>
+                <Route path="/signup"> <SignUp/>  </Route>        
             </Routes>
+        
         </UserStorage>
     </BrowserRouter>    
     
