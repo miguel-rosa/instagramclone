@@ -1,14 +1,14 @@
-import React /*, { useEffect, useState }*/ from 'react';
+import React , { useEffect, useState } from 'react';
 import './Feed.css';
 
 import Post from '../../components/Post/Post'
 
 
-// import { PHOTOS_GET } from '../../api';
+ import { PHOTOS_GET } from '../../api';
 
 
 
-
+/*
 const posts = [
     {
       'id':1,
@@ -61,13 +61,13 @@ const posts = [
   
 
   
-
+*/
 
 
 
 const Feed = () => {
 
-  /*  const [ posts, setPosts ] = useState([]); 
+    const [ posts, setPosts ] = useState([]); 
     
     
     useEffect(() => {
@@ -82,7 +82,7 @@ const Feed = () => {
 
     }, [])
   
-   console.log(posts)*/
+   console.log(posts)
     return(
         <main id="feed">
             <div id="feed__container">

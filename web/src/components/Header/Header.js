@@ -33,7 +33,7 @@ const Header = () =>{
                         <Link className="popup__item" to={`/post`}>
                             <PlusIcon className="popup__item__ico"/> <span className="popup__item__text"> Postar imagem </span>
                         </Link>
-                        <Link className="popup__item" to="account/edit-profile">
+                        <Link className="popup__item" to="/account/edit-profile">
                             <CogIcon className="popup__item__ico"/> <span className="popup__item__text"> Configurações </span>
                         </Link>
                         <div className="popup__item logout" onClick={userLogout}> 
