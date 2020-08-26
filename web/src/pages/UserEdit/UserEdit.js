@@ -58,7 +58,7 @@ const UserEdit = () => {
                 
                 <input type="file" />
                 <label>Nome Completo</label>
-                <input type="text" defaultValue={user.name}/>
+                <input type="text" onChange={handleInputChange}defaultValue={user.name}/>
                 <label>Biografia</label>
                 <textarea value="" />
                 <button className="login__button"> Enviar </button>
