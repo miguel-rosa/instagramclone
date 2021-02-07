@@ -1,5 +1,5 @@
-//export const API_URL = 'http://apidogs.combr/json';
-export const API_URL = 'https://wdtheme.wdt.com.br/json';
+export const API_URL = 'http://localhost:3333';
+// export const API_URL = 'https://wdtheme.wdt.com.br/json';
 
 export function TOKEN_POST (body) {
     return {
@@ -19,7 +19,7 @@ export function TOKEN_VALIDATE_POST(token){
     return{
         url:API_URL + '/jwt-auth/v1/token/validate',
         options:{
-            method:'POST',
+            method:'GET',
             headers:{
                 "Content-Type": "application/json",
                 'Authorization':'Bearer '+token
@@ -28,13 +28,13 @@ export function TOKEN_VALIDATE_POST(token){
     }
 }
 
-export function USER_GET(token){
+export function USER_GET_LOGIN(token){
     return{
-        url:API_URL + '/v1/user',
+        url:API_URL + '/v1/user_validate/',
         options:{
             method:'GET',
             headers:{
-                'Authorization':'Bearer '+ token
+                'Authorization':token
             }
         }
     }
@@ -54,9 +54,23 @@ export function USER_POST(formData){
     }
 }
 
-export function UNIQUE_USER_GET(id){
+export function USER_PUT(id, formData, token){
     return{
         url:API_URL + '/v1/user/' + id,
+        options:{
+            method:'PUT',
+            headers:{
+                /*'Content-Type': "multipart/form-data; boundary=---011000010111000001101001",*/
+                'Authorization': token
+            },
+            body:formData
+        }
+    }
+}
+
+export function UNIQUE_USER_GET(slug){
+    return{
+        url:API_URL + '/v1/user/' + slug,
         options:{
             method:'GET',
         }
@@ -64,13 +78,14 @@ export function UNIQUE_USER_GET(id){
 }
 
 export function POST_PHOTO(formData, token){
+    console.log(formData)
     return{
-        url:API_URL + '/v1/photo',
+        url:API_URL + '/v1/posts',
         options:{
             method:'POST',
             headers:{
                 /*'Content-Type': "multipart/form-data; boundary=---011000010111000001101001",*/
-                'Authorization': 'Bearer ' + token
+                'Authorization': token
             },
             body:formData
         }
@@ -79,20 +94,19 @@ export function POST_PHOTO(formData, token){
 
 export function DELETE_POST(id, token){
     return{
-        url:API_URL + '/v1/photo/' + id,
+        url:API_URL + '/v1/posts/' + id,
         options:{
             method:'DELETE',
             headers:{
-                'Authorization': 'Bearer ' + token
+                'Authorization': token
             }
         }
     }
 }
 
-
 export function PHOTOS_GET(){
     return{
-        url:API_URL + '/v1/photo/',
+        url:API_URL + '/v1/posts/',
         options:{
             method:'GET',
             headers:{

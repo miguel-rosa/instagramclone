@@ -11,7 +11,7 @@ import Comment from '../Comment/Comment.js';
 const Post = ({data}) => {
   
   const { dataUser, login } = useContext(UserContext);
-
+  console.log("posts", data.length)
   const [comments, setComments] = useState(data.comments);
   const [comment, setComment] = useState('');
   
@@ -35,7 +35,6 @@ const Post = ({data}) => {
 
   }
   
-
   return(
     <article className="post">
         <header className="post__header">
@@ -55,7 +54,7 @@ const Post = ({data}) => {
             </div>
             <div className="post__footer__comments">
                {
-                 comments.map( (comment, index) => (
+                 comments && comments.map( (comment, index) => (
                    <Comment key={index} username={comment.username} comment={comment.comment}/>
                  ))
                }

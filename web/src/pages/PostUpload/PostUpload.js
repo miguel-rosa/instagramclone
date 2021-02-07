@@ -15,21 +15,21 @@ const PostUpload = () => {
     const navigate = useNavigate();
     
 
-    const [legend, setLegend] = useState({})
+    const [legend, setLegend] = useState()
     const [image, setImage] = useState({})
 
     const {/* loading, error,*/ request } = useFetch();
 
     function handleInputChange(event){
         const { value } = event.target;
-        setLegend( value );
+        setLegend(value);
     }
 
     function handleFileInputChange( event ){
         setImage({
             preview: URL.createObjectURL(event.target.files[0]),
-            raw:event.target.files[0],
-        })
+            raw:event.target.files[0]
+        });
     }
 
     async function handleFormSubmit(event){
@@ -37,11 +37,11 @@ const PostUpload = () => {
         
         const token = window.localStorage.getItem('token');
         const formData = new FormData();
+        
+        formData.append('image', image.raw);
+        formData.append('legend', legend);
 
-        formData.append('img', image.raw);
-        formData.append('legend', String(legend));
-
-        console.log(formData);
+        console.log(formData.get('img'), formData.get('legend'));
         
         const { url, options } = POST_PHOTO(formData, token);
         const { response } = await request(url, options);

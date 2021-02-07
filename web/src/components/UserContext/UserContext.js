@@ -1,5 +1,5 @@
 import React, { useCallback, createContext, useState , useEffect} from 'react';
-import { USER_GET, TOKEN_POST, TOKEN_VALIDATE_POST } from '../../api';
+import { USER_GET_LOGIN, TOKEN_POST, TOKEN_VALIDATE_POST } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
@@ -26,11 +26,14 @@ export const UserStorage = (props) => {
         try{
             setError(null);
             setLoading(true);
-            const { username, password } = formData;        
+            const { username, password } = formData;  
+            
             const { url, options } = TOKEN_POST({username, password});
             const response = await fetch(url, options);
-            if(!response.ok) throw new Error(`Usuário inválido`);
+            console.log('response token post', response)
+            if(!response.ok) throw new Error(`Usuário ou senha inválidos`);
             const { token } = await response.json();
+            console.log('token', token)
             window.localStorage.setItem('token', token);
             await getUser(token);
             navigate(`/user/${username}`);
@@ -45,8 +48,10 @@ export const UserStorage = (props) => {
     }
 
     async function getUser(token){
-        const {url, options} = USER_GET(token);
+        const {url, options} = USER_GET_LOGIN(token);
         const response = await fetch(url, options);
+        console.log('response user', response)
+        if(!response.ok) throw new Error("Usuário ou senha inválidos")
         const json = await response.json();
         setDataUser(json);
         setLogin(true);
@@ -60,6 +65,7 @@ export const UserStorage = (props) => {
                 try{
                     setError(null);
                     setLoading(true);
+                    console.log('token do if', token)
                     const {url, options } = TOKEN_VALIDATE_POST(token);
                     const response = await fetch(url, options);
                     if(!response.ok) throw new Error('Token Inválido');
@@ -76,7 +82,7 @@ export const UserStorage = (props) => {
     }, [userLogout]);
 
     return(
-        <UserContext.Provider value={{ userLogin, dataUser, login, userLogout, error, loading }}>
+        <UserContext.Provider value={{ setDataUser, userLogin, dataUser, login, userLogout, error, loading }}>
             {props.children}
         </UserContext.Provider> 
     )

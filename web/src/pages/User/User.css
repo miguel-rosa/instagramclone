@@ -35,7 +35,10 @@
     justify-content:center;
 }
 .user__photo__image{
- 
+    width:150px;
+    height:150px;
+    background-size:cover;
+    background-position:center;
     border:1px solid lightgray;
     border-radius:50%;
 }

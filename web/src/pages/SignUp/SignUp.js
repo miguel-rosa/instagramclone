@@ -19,7 +19,7 @@ const SignUp = () => {
 
     const [formData , setFormData] = useState({
         'username':'',
-        'user_name':'',
+        'name':'',
         'email':'',
         'password':''
     })
@@ -36,6 +36,7 @@ const SignUp = () => {
         const { url, options } = USER_POST(formData);
 
         const { response }= await request(url, options);
+        console.log(response)
         
         if(response.ok) userLogin(formData)       
         
@@ -52,7 +53,7 @@ const SignUp = () => {
                             <label htmlFor="signup__mail">Número do celular ou email</label>
                         </div> 
                         <div className="sign__wrapper">
-                            <input name="user_name" onChange={handleInputChange} id="signup__name" type="text"  required/>
+                            <input name="name" onChange={handleInputChange} id="signup__name" type="text"  required/>
                             <label htmlFor="signup__name">Nome Completo</label>
                         </div> 
                         <div className="sign__wrapper">

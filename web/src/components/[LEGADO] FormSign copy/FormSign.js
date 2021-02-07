@@ -9,7 +9,7 @@ const FormSign = (props) => {
     
     const [formData , setFormData] = useState({
         'username':'',
-        'user_name':'',
+        'name':'',
         'email':'',
         'password':''
     })

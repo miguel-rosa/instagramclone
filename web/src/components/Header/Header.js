@@ -23,7 +23,7 @@ const Header = () =>{
             { dataUser ? (
               <div className="header__wrapper__user_infos">
                 <div className="header__wrapper__user-image" to={`/user/${dataUser.username}`}>
-                  <img onClick={() => setOpenPopup(!openPopup)} className="header__user-image" src={dataUser.image.url} alt="Foto do usuário"/> 
+                  <img onClick={() => setOpenPopup(!openPopup)} className="header__user-image" src={dataUser.image} alt="Foto do usuário"/> 
                   <div className="header__popup" style={openPopup ? {display:'flex'} : {display:'none'} }>
                     <div className="header__popup__triangle" />
                       <div onClick={() => setOpenPopup(false)} className="header__popup__items">

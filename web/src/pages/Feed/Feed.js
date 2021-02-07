@@ -8,7 +8,7 @@ import Post from '../../components/Post/Post'
 
 
 
-/*
+
 const posts = [
     {
       'id':1,
@@ -60,34 +60,31 @@ const posts = [
   ];
   
 
-  
-*/
-
-
 
 const Feed = () => {
 
-    const [ posts, setPosts ] = useState([]); 
+    // const [ posts, setPosts ] = useState([postsData]); 
     
     
-    useEffect(() => {
-      async function fetchData() {
-        const {url, options } = PHOTOS_GET();
-        const  response  = await fetch(url, options);
-        const json = await response.json();
-        
-        setPosts(json)
-    }
-      fetchData();
+      // useEffect(() => {
+      //   async function fetchData() {
+      //     const {url, options } = PHOTOS_GET();
+      //     const  response  = await fetch(url, options);
+      //     const json = await response.json();
+          
+      //     setPosts(json)
+      // }
+      //   fetchData();
 
-    }, [])
-  
+      // }, [])
+    
    console.log(posts)
     return(
         <main id="feed">
             <div id="feed__container">
                 {
-                    posts && posts.map( post => (
+                    posts.map( post => (
+                      // console.log('post', post)
                       <Post key={post.id} data={post} />
                     ))
                  }

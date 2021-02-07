@@ -21,14 +21,19 @@ const User = () => {
     const { username } = useParams();
     const [ isUser, setIsUser ] = useState(Boolean());
 
+    
+
     const [ user, setUser ] = useState({
         'email':'',
         'id':'',
-        'image':'http://0.gravatar.com/avatar/f587b8a2cefb2e7be0cb123f1fdc44b5?s=96&d=mm&r=g',
+        'image':'',
         'name': '',
         'username': '',
         'posts': ['']
     });
+
+    
+    console.log('username', username, 'dataUser', dataUser)
 
     useEffect( () => {
         async function fetchData() {
@@ -58,14 +63,15 @@ const User = () => {
     }
 
     async function deletePost(id){
+        console.log('deleeeeeete')
         const token = window.localStorage.getItem('token');
         const { url, options } = DELETE_POST(id, token);
         const response = await fetch(url, options);
-        
+        console.log('response', response)
         if(response.ok){
             const posts = user.posts
             const updatedPosts = posts.filter( item => item.id !== id);
-            
+            console.log(posts, updatedPosts)
             setUser({
                 'email':user.email,
                 'id':user.id,
@@ -82,19 +88,21 @@ const User = () => {
                 <div className="user__container">
                     <header className="user__header">
                         <div className="user__photo">
-                            <img className="user__photo__image" src={user.image} alt={user.title} />
+                            <div className="user__photo__image" style={{backgroundImage:`url('${user.image}')`}}/>
                         </div>
                         <div className="user__infos">
                             <div>
                                 <h1 className="user__name">{user.username}</h1>
                             </div>
                             <div className="user__numbers">
-                                <span className="user__number"><b>{user.posts.length}</b>{user.posts.length === 1 ? ' publicação' : ' publicações'}</span>
+                                <span className="user__number">
+                                    {user.posts.length ? <b>{user.posts.length}</b> :'Nenhuma' }
+                                    {user.posts.length <= 1 ? ' publicação' : ' publicações'}</span>
                                 <span className="user__number"><b>10</b> seguidores</span>
                                 <span className="user__number"><b>20</b> seguindo</span>
                             </div>
                             <h2 className="user__title">{ user.name }</h2>
-                            <p className="user_description">{ /*user.description */}</p>
+                            <p className="user_description">{ user.description }</p>
                         </div>
                     </header>
                     <section className="user__posts">

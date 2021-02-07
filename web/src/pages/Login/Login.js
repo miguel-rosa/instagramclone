@@ -1,20 +1,17 @@
 import React, {useState, useContext} from 'react';
-import './Login.css';
-
 import { Link, Navigate } from 'react-router-dom';
 
 import imgLogo from '../../uploads/instagram-logo.png';
-
 import { UserContext } from '../../components/UserContext/UserContext';
-
 import Error from '../../components/Helper/Error';
+import './Login.css';
 
 const Login = () => {
 
     const { userLogin, error, loading, login, dataUser } = useContext(UserContext);
 
     const [formData , setFormData] = useState({'username':'','password':''})
-    
+    console.log('dataUser', dataUser)
     if(login === true ) return <Navigate to={`/user/${dataUser.username}`}/>
 
     function handleInputChange(event){
