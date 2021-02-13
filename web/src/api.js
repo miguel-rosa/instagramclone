@@ -1,4 +1,7 @@
-export const API_URL = 'http://localhost:3333';
+const USE_IP = true;
+const USE_LOCAL = false;
+const HOST = USE_IP ? '192.168.0.16' : 'localhost'; 
+export const API_URL =  USE_LOCAL ? `http://${HOST}:3333` : 'https://miguelsocialserver.herokuapp.com/';
 // export const API_URL = 'https://wdtheme.wdt.com.br/json';
 
 export function TOKEN_POST (body) {
@@ -68,11 +71,14 @@ export function USER_PUT(id, formData, token){
     }
 }
 
-export function UNIQUE_USER_GET(slug){
+export function UNIQUE_USER_GET(slug, token){
     return{
         url:API_URL + '/v1/user/' + slug,
         options:{
             method:'GET',
+            headers:{
+                'Authorization': token
+            }
         }
     }
 }
@@ -104,14 +110,29 @@ export function DELETE_POST(id, token){
     }
 }
 
-export function PHOTOS_GET(){
-    return{
-        url:API_URL + '/v1/posts/',
+export function PHOTOS_GET(page){
+    return {
+        url:API_URL + '/v1/posts/?page=' + page,
         options:{
             method:'GET',
             headers:{
                 
             }
+        }
+    }
+}
+
+export function FOLLOW_POST(formData, token){
+    console.log('formData', formData)
+    return {
+        url:API_URL + '/v1/follow',
+        options:{
+            method:'POST',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': token,
+            },
+            body: JSON.stringify(formData)
         }
     }
 }

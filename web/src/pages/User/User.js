@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './User.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { UNIQUE_USER_GET } from '../../api';
-
-import { DELETE_POST } from '../../api';
+import { UNIQUE_USER_GET, FOLLOW_POST, DELETE_POST} from '../../api';
 
 import { FiX as CloseIcon } from 'react-icons/fi'
 
@@ -37,7 +35,9 @@ const User = () => {
 
     useEffect( () => {
         async function fetchData() {
-            const { url, options } = UNIQUE_USER_GET(username)
+            const token = window.localStorage.getItem('token') || null ;
+            console.log('token', token)
+            const { url, options } = UNIQUE_USER_GET(username, token)
             const response = await fetch(url, options);
             const json = await response.json();
             console.log(json)    
@@ -82,6 +82,22 @@ const User = () => {
             })
         }
     }
+
+    async function followUser(){
+        
+        const follow = {
+            followerId: dataUser.id,
+            followedId: user.id
+        }
+        const token = window.localStorage.getItem('token');
+        console.log(follow.followerId, follow.followedId)
+
+        const {url, options } = FOLLOW_POST({...follow}, token);
+        const response  = await fetch(url, options);
+        const json = await response.json();
+
+        if(response.ok) console.log('ok response')
+    }
     
     return (
             <main className="user">
@@ -101,6 +117,12 @@ const User = () => {
                                 <span className="user__number"><b>10</b> seguidores</span>
                                 <span className="user__number"><b>20</b> seguindo</span>
                             </div>
+                            {
+                                dataUser && !isUser && 
+                                <div className="user__follow">
+                                    <button onClick={() => followUser()}>Seguir usuário</button>
+                                </div>
+                            }
                             <h2 className="user__title">{ user.name }</h2>
                             <p className="user_description">{ user.description }</p>
                         </div>

@@ -11,7 +11,8 @@ import Comment from '../Comment/Comment.js';
 const Post = ({data}) => {
   
   const { dataUser, login } = useContext(UserContext);
-  console.log("posts", data.length)
+  console.log("posts", {...data})
+  // console.log("posts 2", data)
   const [comments, setComments] = useState(data.comments);
   const [comment, setComment] = useState('');
   
@@ -34,33 +35,36 @@ const Post = ({data}) => {
     setComment('');
 
   }
+
+  console.log('author', data.author && data.author.username)
   
   return(
+    data &&
     <article className="post">
         <header className="post__header">
-          <Link className="post__header__link" to={`/user/${data.author.username}`}>
-            <img className="post__header__img" src={data.author.photo} alt={data.author.username} />
-            <h2 className="post__header__title">{data.author.username}</h2>
+          <Link className="post__header__link" to={`/user/${data.author && data.author.username}`}>
+            <img className="post__header__img" src={data.author && data.author.image} alt={data.author && data.author.username} />
+            <h2 className="post__header__title">{data.author && data.author.username}</h2>
           </Link>
         </header>
-        <img className="post__image" src={data.image} alt={data.author.username} />
+        <img className="post__image" src={data.image} alt={data.author && data.author.username}/>
         <footer className="post__footer">
           <div className="post__footer__wrapper">
             <div className="post__footer__header">
-              { login && <LikeHeart liked={data.liked.includes(dataUser && dataUser.id)}/> }
+              {/* { login && <LikeHeart liked={data.liked.includes(dataUser && dataUser.id)}/> } */}
             </div>
             <div className="post__footer__liked-bar">
-              {data.liked.length === 0 ? 'Até agora ninguem curtiu' : `Curtido por ${data.liked.length} pessoas`}
+              {/* {data.liked.length === 0 ? 'Até agora ninguem curtiu' : `Curtido por ${data.liked.length} pessoas`} */}
             </div>
-            <div className="post__footer__comments">
+            {/* <div className="post__footer__comments">
                {
                  comments && comments.map( (comment, index) => (
                    <Comment key={index} username={comment.username} comment={comment.comment}/>
                  ))
                }
+            </div> */}
             </div>
-            </div>
-            { login &&
+            {/* { login &&
               <form onSubmit={handleSendComment} className="post__footer__send-comment">
                 <textarea 
                   className="post__footer__send-comment__input" 
@@ -72,7 +76,7 @@ const Post = ({data}) => {
                 />
                 <button type="submit" className="post__footer__send-comment__send">Publicar</button>
               </form>
-            }
+            } */}
         </footer> 
     </article>
   )
