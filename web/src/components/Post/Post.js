@@ -18,7 +18,6 @@ const Post = ({data}) => {
   // const [comments, setComments] = useState(data.comments);
   // const [comment, setComment] = useState('');
   
-
   // function handleInput(e){
   //   setComment(e.target.value);
   // }
