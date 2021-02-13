@@ -5,36 +5,36 @@ import { Link } from 'react-router-dom';
 
 import { UserContext } from '../UserContext/UserContext';
 
-import LikeHeart from '../LikeHeart/LikeHeart';
-import Comment from '../Comment/Comment.js';
+// import LikeHeart from '../LikeHeart/LikeHeart';
+// import Comment from '../Comment/Comment.js';
 
 const Post = ({data}) => {
   
-  const { dataUser, login } = useContext(UserContext);
+  const { dataUser } = useContext(UserContext);
   console.log("posts", {...data})
   // console.log("posts 2", data)
   const [comments, setComments] = useState(data.comments);
   const [comment, setComment] = useState('');
   
 
-  function handleInput(e){
-    setComment(e.target.value);
-  }
+  // function handleInput(e){
+  //   setComment(e.target.value);
+  // }
   
-  function handleSendComment(e){
-    e.preventDefault();
-    console.log(e);
-    if(comment === ''){
-      return;
-    }
-    const newComment = {
-        'username':dataUser.username,
-        comment
-    }
-    setComments([...comments, newComment ])
-    setComment('');
+  // function handleSendComment(e){
+  //   e.preventDefault();
+  //   console.log(e);
+  //   if(comment === ''){
+  //     return;
+  //   }
+  //   const newComment = {
+  //       'username':dataUser.username,
+  //       comment
+  //   }
+  //   setComments([...comments, newComment ])
+  //   setComment('');
 
-  }
+  // }
 
   console.log('author', data.author && data.author.username)
   
