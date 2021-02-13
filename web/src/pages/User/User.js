@@ -94,7 +94,7 @@ const User = () => {
 
         const {url, options } = FOLLOW_POST({...follow}, token);
         const response  = await fetch(url, options);
-        const json = await response.json();
+        // const json = await response.json();
 
         if(response.ok) console.log('ok response')
     }
